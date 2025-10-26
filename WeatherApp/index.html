@@ -1,11 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App</title>
-</head>
-<body>
-    
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Weather App</title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+    </head>
+    <body>
+        <header class="header">
+            <h1 class="title">WeatherAPP</h1>
+        </header>
+        <main class="main">
+            <article class="card">
+                <h2 class="card__title">Oviedo</h2>
+                <img
+                    src="https://openweathermap.org/img/wn/10d@2x.png"
+                    alt="Weather Icon"
+                    class="card__image"
+                />
+                <div class="card__info">
+                    <p class="card__description">DESCRIPCION</p>
+                    <p class="card__temperature">TEMPERATURA</p>
+                </div>
+            </article>
+        </main>
+        <footer class="footer">
+            <p class="footer__description">
+                Data provided by
+                <a
+                    class="footer__link"
+                    href="https://openweathermap.org/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >OpenWeather</a
+                >
+            </p>
+        </footer>
+    </body>
 </html>
