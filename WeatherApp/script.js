@@ -4,20 +4,30 @@ const $temperature = document.querySelector(".card__temperature");
 const $description = document.querySelector(".card__description");
 const $weatherImage = document.querySelector(".card__image");
 
+const $searchForm = document.querySelector("#searchForm");
+const $searchInput = document.querySelector("#searchInput");
+const $serachButton = document.querySelector("#searchButton");
+
 const url = `https://api.openweathermap.org/data/2.5/weather`;
 const apiKey = "317b2942175eaff8bdec5ad146e34c17";
 
 // Función para actualizar todos los datos del clima
 function updateWeatherInfo(city, temperature, description, iconCode) {
-    // Actualiza el título de la ciudad
     $city.textContent = city;
-    // Actualiza la temperatura (añade el símbolo de grados)
     $temperature.textContent = `${temperature}º`;
-    // Actualiza la descripción
     $description.textContent = description;
-    // Actualiza el icono (usando la URL de OpenWeather)
-    $weatherImage.src = `https://openweathermap.org/img/wn/${iconCode}@4x.png`;
+    $weatherImage.src = `https://openweathermap.org/img/wn/${
+        iconCode ? iconCode : "01d"
+    }@4x.png`;
 }
+
+$searchForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const city = $searchInput.value;
+
+    getData(apiKey, city, "es");
+});
 
 async function getData(key = apiKey, city, lang) {
     const params = new URLSearchParams();
@@ -30,24 +40,23 @@ async function getData(key = apiKey, city, lang) {
     const getDataURL = `${url}?${params}`;
 
     try {
-        console.log(url);
-
         const response = await fetch(getDataURL).then((response) =>
             response.json()
         );
 
-        updateWeatherInfo(
-            response.name,
-            response.main.temp,
-            response.weather[0].description,
-            response.weather[0].icon
-        );
+        console.log(response.cod);
+
+        if (response.cod === 200)
+            updateWeatherInfo(
+                response.name,
+                response.main.temp,
+                response.weather[0].description,
+                response.weather[0].icon
+            );
+        else updateWeatherInfo("-", "-", "-", undefined);
     } catch (error) {
         console.error(error.message);
     }
 }
 
-// Ejemplo de uso:
-updateWeatherInfo("Madrid", "22.5", "Soleado", "01d");
-
-getData(apiKey, "bilbao", "es");
+getData(apiKey, "Madrid", "es");

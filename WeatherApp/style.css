@@ -23,6 +23,13 @@ body {
     justify-content: center;
     align-items: center;
     font-family: var(--ff-sans);
+
+    gap: 2rem;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
 }
 
 .card {
@@ -53,4 +60,14 @@ body {
     align-items: center;
 
     gap: 0.5rem;
+}
+
+.form {
+    display: flex;
+
+    height: 1.5rem;
+}
+
+.form__input {
+    flex-grow: 1;
 }
