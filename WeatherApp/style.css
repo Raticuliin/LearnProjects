@@ -1,6 +1,12 @@
 :root {
     --ff-sans: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto,
         "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+
+    --c-base: #d4a46a;
+    --c-light: #fcd5a5;
+    --c-lighter: #ffe8cc;
+    --c-dark: #aa7739;
+    --c-darker: #7d4d13;
 }
 
 *,
@@ -24,19 +30,22 @@ body {
     align-items: center;
     font-family: var(--ff-sans);
 
+    background-color: var(--c-base);
+
     gap: 2rem;
 }
 
 .main {
     display: flex;
     flex-direction: column;
+
+    gap: 1rem;
 }
 
 .card {
-    background-color: bisque;
+    background-color: var(--c-light);
+    border: 0.25rem solid var(--c-lighter);
 
-    width: min(26rem, 80vw);
-    height: 50vh;
     padding: 2rem;
 
     border-radius: 2rem;
@@ -65,9 +74,31 @@ body {
 .form {
     display: flex;
 
-    height: 1.5rem;
+    gap: 2rem;
+}
+
+.form > * {
+    padding: 1rem 2rem;
+    border-radius: 3rem;
+
+    font-size: 1.25rem;
+
+    border: 0.25rem solid var(--c-lighter);
 }
 
 .form__input {
+    background-color: var(--c-light);
+    opacity: 0.6;
     flex-grow: 1;
+}
+
+.form__button {
+    background: var(--c-light);
+    font-weight: bold;
+    transition: 0.3s all;
+}
+
+.form__button:hover {
+    cursor: pointer;
+    opacity: 0.6;
 }
