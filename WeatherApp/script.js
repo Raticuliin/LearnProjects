@@ -26,6 +26,11 @@ $searchForm.addEventListener("submit", (event) => {
 
     const city = $searchInput.value;
 
+    if (!city) {
+        updateWeatherInfo("-", "-", "Introduce una ciudad", null);
+        return;
+    }
+
     getData(apiKey, city, "es");
 });
 
@@ -40,20 +45,19 @@ async function getData(key = apiKey, city, lang) {
     const getDataURL = `${url}?${params}`;
 
     try {
-        const response = await fetch(getDataURL).then((response) =>
-            response.json()
-        );
+        const response = await fetch(getDataURL);
+        const data = await response.json();
 
-        console.log(response.cod);
+        if (data && data.cod === 200) {
+            const name = data.name;
+            const temp = data.main.temp;
+            const desc = data.weather[0].description;
+            const icon = data.weather[0].icon;
 
-        if (response.cod === 200)
-            updateWeatherInfo(
-                response.name,
-                response.main.temp,
-                response.weather[0].description,
-                response.weather[0].icon
-            );
-        else updateWeatherInfo("-", "-", "-", undefined);
+            updateWeatherInfo(name, temp, desc, icon);
+        } else {
+            updateWeatherInfo("-", "-", "No se encontró la ciudad", null);
+        }
     } catch (error) {
         console.error(error.message);
     }
