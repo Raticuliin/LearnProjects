@@ -28,7 +28,8 @@ body {
 .card {
     background-color: bisque;
 
-    width: 50vw;
+    width: min(26rem, 80vw);
+    height: 50vh;
     padding: 2rem;
 
     border-radius: 2rem;
@@ -36,12 +37,20 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+}
+
+.card__title {
+    font-size: 1.5rem;
 }
 
 .card__info {
+    font-size: 1.25rem;
+    font-weight: bold;
+
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    gap: 1rem;
+    gap: 0.5rem;
 }
